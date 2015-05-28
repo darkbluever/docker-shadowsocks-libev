@@ -3,7 +3,7 @@
 # VERSION  0.0.2
 
 FROM       ubuntu:14.04
-MAINTAINER Frank Zhang "zjufrankzhang@gmail.com"
+MAINTAINER FrankZhang "zjufrankzhang@gmail.com"
 
 # Install ShadownSocks from apt repo
 RUN printf "deb http://shadowsocks.org/debian wheezy main" >> /etc/apt/sources.list
