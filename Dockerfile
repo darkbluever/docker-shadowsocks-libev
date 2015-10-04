@@ -2,7 +2,7 @@
 #
 # VERSION  0.0.4
 
-FROM       ubuntu:15.04
+FROM       ubuntu:14.10
 MAINTAINER Frank Zhang "zjufrankzhang@gmail.com"
 
 # Install ShadownSocks from apt repo
