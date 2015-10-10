@@ -2,8 +2,13 @@
 #
 # VERSION  0.0.4
 
+<<<<<<< HEAD
 FROM       ubuntu:14.10
+MAINTAINER Frank Zhang "zjufrankzhang@gmail.com"
+=======
+FROM       ubuntu:14.04
 MAINTAINER FrankZhang "zjufrankzhang@gmail.com"
+>>>>>>> dev
 
 # Install ShadownSocks from apt repo
 RUN apt-get update && apt-get install -y --force-yes wget
