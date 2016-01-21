@@ -30,4 +30,4 @@ VOLUME ["/etc/shadowsocks-libev/"]
 # Note: we need to clearly expose the port number.
 # Run it: thanks to entrypoint, we can add options when launching the container
 ENTRYPOINT ["/usr/local/bin/ss-server"]
-CMD ["-c", "/etc/shadowsocks-libev/config.json", "-u", "-A"]
+CMD ["-c", "/etc/shadowsocks-libev/config.json", "-u"]
