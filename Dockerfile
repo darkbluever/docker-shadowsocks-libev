@@ -7,7 +7,7 @@ MAINTAINER FrankZhang "zjufrankzhang@gmail.com"
 
 ENV DEPENDENCIES git-core build-essential autoconf libtool libssl-dev
 ENV BASEDIR /tmp/shadowsocks-libev
-ENV VERSION v2.4.4
+ENV VERSION v2.4.5
 
 # Set up building environment
 RUN apt-get update \
