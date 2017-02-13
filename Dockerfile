@@ -6,16 +6,36 @@ FROM       ubuntu:16.04
 MAINTAINER FrankZhang "zjufrankzhang@gmail.com"
 
 ENV DEPENDENCIES git-core gettext automake build-essential autoconf libtool libssl-dev libpcre3-dev asciidoc xmlto zlib1g-dev libev-dev libudns-dev libsodium-dev libmbedtls-dev
+ENV DEPENDENCIES2 ca-certificates wget 
 ENV BASEDIR /tmp/shadowsocks-libev
+ENV LIBDIR /tmp/ss-libs
 ENV VERSION v3.0.2
+ENV LIBSODIUM_VER 1.0.11
+ENV MBEDTLS_VER 2.4.0
 
 # Set up building environment
 RUN apt-get update \
  && apt-get install -y --no-install-recommends $DEPENDENCIES
+RUN apt-get install -y --no-install-recommends $DEPENDENCIES2
 
+# Build and install with recent mbedTLS and libsodium
+WORKDIR $LIBDIR
+RUN wget https://github.com/jedisct1/libsodium/releases/download/1.0.11/libsodium-$LIBSODIUM_VER.tar.gz
+RUN tar xvf libsodium-$LIBSODIUM_VER.tar.gz
+WORKDIR $LIBDIR/libsodium-$LIBSODIUM_VER
+RUN ./configure --prefix=/usr && make && make install
+
+WORKDIR $LIBDIR
+RUN wget https://tls.mbed.org/download/mbedtls-$MBEDTLS_VER-gpl.tgz
+RUN tar xvf mbedtls-$MBEDTLS_VER-gpl.tgz
+WORKDIR $LIBDIR/mbedtls-$MBEDTLS_VER
+RUN make SHARED=1 CFLAGS=-fPIC
+RUN make DESTDIR=/usr install
+ 
 # Get the latest code, build and install
 RUN git clone https://github.com/shadowsocks/shadowsocks-libev.git $BASEDIR
 WORKDIR $BASEDIR
+RUN git submodule init && git submodule update
 RUN git checkout $VERSION \
  && ./autogen.sh \
  && ./configure \
@@ -25,7 +45,8 @@ RUN git checkout $VERSION \
 # Tear down building environment and delete git repository
 WORKDIR /
 RUN rm -rf $BASEDIR/shadowsocks-libev\
- && apt-get --purge autoremove -y $DEPENDENCIES
+ && apt-get --purge autoremove -y $DEPENDENCIES $DEPENDENCIES2\
+ && rm -rf $LIBDIR
  
 # easier to configure and integrate passwords
 ADD config.json /etc/shadowsocks-libev/config.json
