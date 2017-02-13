@@ -1,1 +1,1 @@
-docker build -t frankzhang/shadowsocks-c .
+docker build -t frankzhang/shadowsocks-libev .

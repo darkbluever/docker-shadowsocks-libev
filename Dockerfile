@@ -1,4 +1,4 @@
-# ShadownSock C (libev) with Ubuntu
+# ShadownSock Libev with Ubuntu
 #
 # VERSION  1.1.0
 
@@ -44,7 +44,7 @@ RUN git checkout $VERSION \
 
 # Tear down building environment and delete git repository
 WORKDIR /
-RUN rm -rf $BASEDIR/shadowsocks-libev\
+RUN rm -rf $BASEDIR\
  && apt-get --purge autoremove -y $DEPENDENCIES $DEPENDENCIES2\
  && rm -rf $LIBDIR
  
