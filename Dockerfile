@@ -43,7 +43,6 @@ RUN git checkout $VERSION \
 # Tear down building environment and delete git repository
 WORKDIR /
 RUN rm -rf $BASEDIR\
- && apt-get --purge autoremove -y $DEPENDENCIES\
  && rm -rf $LIBDIR
  
 # easier to configure and integrate passwords
