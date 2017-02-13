@@ -5,8 +5,8 @@
 FROM       ubuntu:16.04
 MAINTAINER FrankZhang "zjufrankzhang@gmail.com"
 
-ENV DEPENDENCIES git-core gettext automake build-essential autoconf libtool libssl-dev libpcre3-dev asciidoc xmlto zlib1g-dev libev-dev libudns-dev libsodium-dev libmbedtls-dev
-ENV DEPENDENCIES2 ca-certificates wget 
+ENV DEPENDENCIES git-core gettext automake build-essential autoconf libtool libssl-dev libpcre3-dev asciidoc xmlto zlib1g-dev libsodium-dev libmbedtls-dev 
+ENV DEPENDENCIES2 ca-certificates wget libev-dev libev4 libudns-dev libudns0
 ENV BASEDIR /tmp/shadowsocks-libev
 ENV LIBDIR /tmp/ss-libs
 ENV VERSION v3.0.2

@@ -1,4 +1,4 @@
-# Docker ShadowSocks C (libev)
+# Docker ShadowSocks Libev
 
 This repository contains a Dockerfile to build a [ShadowSocks](https://github.com/shadowsocks/shadowsocks-libev) (made in pure C with libev) server.
 
