@@ -5,8 +5,7 @@
 FROM       ubuntu:16.04
 MAINTAINER FrankZhang "zjufrankzhang@gmail.com"
 
-ENV DEPENDENCIES git-core gettext automake build-essential autoconf libtool libssl-dev libpcre3-dev asciidoc xmlto zlib1g-dev libsodium-dev libmbedtls-dev 
-ENV DEPENDENCIES2 ca-certificates wget libev-dev libev4 libudns-dev libudns0
+ENV DEPENDENCIES git-core gettext automake build-essential autoconf libtool libssl-dev libpcre3-dev asciidoc xmlto zlib1g-dev libsodium-dev libmbedtls-dev libev-dev libudns-dev ca-certificates wget 
 ENV BASEDIR /tmp/shadowsocks-libev
 ENV LIBDIR /tmp/ss-libs
 ENV VERSION v3.0.2
@@ -16,7 +15,6 @@ ENV MBEDTLS_VER 2.4.0
 # Set up building environment
 RUN apt-get update \
  && apt-get install -y --no-install-recommends $DEPENDENCIES
-RUN apt-get install -y --no-install-recommends $DEPENDENCIES2
 
 # Build and install with recent mbedTLS and libsodium
 WORKDIR $LIBDIR
@@ -45,7 +43,7 @@ RUN git checkout $VERSION \
 # Tear down building environment and delete git repository
 WORKDIR /
 RUN rm -rf $BASEDIR\
- && apt-get --purge autoremove -y $DEPENDENCIES $DEPENDENCIES2\
+ && apt-get --purge autoremove -y $DEPENDENCIES\
  && rm -rf $LIBDIR
  
 # easier to configure and integrate passwords
