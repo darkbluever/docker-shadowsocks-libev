@@ -1,6 +1,6 @@
 # ShadownSock Libev with Ubuntu
 #
-# VERSION  1.1.0
+# VERSION  3.0.3-1
 
 FROM       ubuntu:16.04
 MAINTAINER FrankZhang "zjufrankzhang@gmail.com"
@@ -8,7 +8,7 @@ MAINTAINER FrankZhang "zjufrankzhang@gmail.com"
 ENV DEPENDENCIES git-core gettext automake build-essential autoconf libtool libssl-dev libpcre3-dev asciidoc xmlto zlib1g-dev libsodium-dev libmbedtls-dev libev-dev libudns-dev ca-certificates wget 
 ENV BASEDIR /tmp/shadowsocks-libev
 ENV LIBDIR /tmp/ss-libs
-ENV VERSION v3.0.2
+ENV VERSION v3.0.3
 ENV LIBSODIUM_VER 1.0.11
 ENV MBEDTLS_VER 2.4.0
 
