@@ -1,16 +1,16 @@
 # ShadownSock Libev with Ubuntu
 #
-# VERSION  3.0.3-1
+# VERSION  3.0.4-1
 
 FROM       ubuntu:16.04
 MAINTAINER FrankZhang "zjufrankzhang@gmail.com"
 
-ENV DEPENDENCIES git-core gettext automake build-essential autoconf libtool libssl-dev libpcre3-dev asciidoc xmlto zlib1g-dev libsodium-dev libmbedtls-dev libev-dev libudns-dev ca-certificates wget 
+ENV DEPENDENCIES git-core gettext automake build-essential autoconf libtool libssl-dev libpcre3-dev asciidoc xmlto zlib1g-dev libmbedtls-dev libev-dev libudns-dev ca-certificates wget 
 ENV BASEDIR /tmp/shadowsocks-libev
 ENV LIBDIR /tmp/ss-libs
-ENV VERSION v3.0.3
-ENV LIBSODIUM_VER 1.0.11
-ENV MBEDTLS_VER 2.4.0
+ENV VERSION v3.0.4
+ENV LIBSODIUM_VER 1.0.12
+ENV MBEDTLS_VER 2.4.2
 
 # Set up building environment
 RUN apt-get update \
@@ -18,7 +18,7 @@ RUN apt-get update \
 
 # Build and install with recent mbedTLS and libsodium
 WORKDIR $LIBDIR
-RUN wget https://github.com/jedisct1/libsodium/releases/download/1.0.11/libsodium-$LIBSODIUM_VER.tar.gz
+RUN wget https://download.libsodium.org/libsodium/releases/libsodium-$LIBSODIUM_VER.tar.gz
 RUN tar xvf libsodium-$LIBSODIUM_VER.tar.gz
 WORKDIR $LIBDIR/libsodium-$LIBSODIUM_VER
 RUN ./configure --prefix=/usr && make && make install
@@ -34,11 +34,11 @@ RUN make DESTDIR=/usr install
 RUN git clone https://github.com/shadowsocks/shadowsocks-libev.git $BASEDIR
 WORKDIR $BASEDIR
 RUN git submodule init && git submodule update
-RUN git checkout $VERSION \
- && ./autogen.sh \
+RUN git checkout $VERSION
+RUN ./autogen.sh \
  && ./configure \
- && make \
- && make install
+ && make
+RUN make install
 
 # Tear down building environment and delete git repository
 WORKDIR /
