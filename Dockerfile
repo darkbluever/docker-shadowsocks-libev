@@ -1,6 +1,6 @@
 # ShadownSock Libev with Ubuntu
 #
-# VERSION  3.0.3-1
+# VERSION  3.1.0-1
 
 FROM       ubuntu:16.04
 MAINTAINER FrankZhang "zjufrankzhang@gmail.com"
